@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — SoundWave</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.about-body { max-width: 960px; margin: 0 auto; padding: 0 40px 80px; }
+.about-intro {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+  align-items: center; margin-bottom: 80px;
+}
+.intro-text p { color: var(--muted); line-height: 1.8; font-size: 1rem; font-weight: 300; margin-bottom: 16px; }
+.about-visual {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.av-row { display: flex; align-items: center; gap: 14px; }
+.av-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.25);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+}
+.av-label { font-weight: 600; font-size: 0.9rem; }
+.av-sub { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; margin-bottom: 80px;
+}
+.stat-box {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 20px; text-align: center;
+  transition: border-color 0.2s;
+}
+.stat-box:hover { border-color: var(--accent); }
+.stat-big { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; color: var(--accent); }
+.stat-small { color: var(--muted); font-size: 0.82rem; margin-top: 6px; }
+
+.sources-section { margin-bottom: 80px; }
+.sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.source-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px;
+  transition: border-color 0.2s; text-decoration: none; color: inherit; display: block;
+}
+.source-card:hover { border-color: var(--accent); }
+.source-icon { font-size: 2rem; margin-bottom: 12px; }
+.source-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
+.source-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.6; margin-bottom: 14px; }
+.source-link { color: var(--accent); font-size: 0.8rem; font-weight: 600; }
+
+.license-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px; margin-bottom: 60px;
+}
+.license-section h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 14px; }
+.license-section p { color: var(--muted); line-height: 1.75; font-size: 0.92rem; font-weight: 300; }
+.cc-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.25);
+  color: var(--accent); padding: 8px 16px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 600; margin-top: 16px;
+}
+
+@media (max-width: 800px) {
+  .about-intro { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .sources-grid { grid-template-columns: 1fr; }
+  .about-body { padding: 0 20px 80px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Sound<span>Wave</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="browse.html" class="nav-link">Browse</a>
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </div>
+  <a href="browse.html" class="nav-cta">Explore Music →</a>
+  <div class="auth-btns">
+    <a href="#" class="btn-premium" onclick="event.preventDefault(); openPremiumModal()">💎 Premium</a>
+    <a href="#" class="btn-login" onclick="event.preventDefault(); openAuthModal('login')">Log In</a>
+    <a href="#" class="btn-signup" onclick="event.preventDefault(); openAuthModal('signup')">Sign Up</a>
+  </div>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="browse.html" onclick="toggleMenu()">Browse</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <hr style="border:none;border-top:1px solid var(--border);margin:10px 0;">
+  <div style="display:flex;padding:5px 12px;margin-bottom:10px">
+    <a href="#" class="btn-premium" style="flex:1;text-align:center;justify-content:center" onclick="event.preventDefault(); openPremiumModal()">💎 Premium</a>
+  </div>
+  <div style="display:flex;gap:10px;padding:5px 12px">
+    <a href="#" class="btn-login" style="flex:1;text-align:center" onclick="event.preventDefault(); openAuthModal('login')">Log In</a>
+    <a href="#" class="btn-signup" style="flex:1;text-align:center" onclick="event.preventDefault(); openAuthModal('signup')">Sign Up</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-label">Our Story</div>
+  <h1 class="page-header-title">About <em>SoundWave</em></h1>
+  <p class="page-header-desc">A free music platform built for everyone — listeners, creators, and dreamers.</p>
+</div>
+
+<div class="about-body" style="margin-top:50px;">
+
+  <!-- INTRO -->
+  <div class="about-intro">
+    <div class="intro-text">
+      <p>SoundWave was built with one simple mission: <strong>music should be free and accessible to everyone</strong>. No paywalls, no subscriptions, no ads.</p>
+      <p>We curate thousands of Creative Commons songs from incredible independent artists around the world — from jazz pianists to electronic producers to folk storytellers.</p>
+      <p>Every track on SoundWave is legally free to stream, download, and use in your own projects under Creative Commons licensing.</p>
+    </div>
+    <div class="about-visual">
+      <div class="av-row">
+        <div class="av-icon">🎵</div>
+        <div><div class="av-label">210+ Songs</div><div class="av-sub">Across 9 genres</div></div>
+      </div>
+      <div class="av-row">
+        <div class="av-icon">⚖️</div>
+        <div><div class="av-label">100% Legal</div><div class="av-sub">Creative Commons licensed</div></div>
+      </div>
+      <div class="av-row">
+        <div class="av-icon">⬇️</div>
+        <div><div class="av-label">Free Downloads</div><div class="av-sub">Save any song locally</div></div>
+      </div>
+      <div class="av-row">
+        <div class="av-icon">🌍</div>
+        <div><div class="av-label">Global Artists</div><div class="av-sub">Independent musicians worldwide</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-big">210+</div>
+      <div class="stat-small">Free Songs</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-big">9</div>
+      <div class="stat-small">Music Genres</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-big">3</div>
+      <div class="stat-small">Music Sources</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-big">CC</div>
+      <div class="stat-small">Licensed Music</div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="page-header-label" style="padding:0;margin-bottom:10px">Music Sources</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:30px">Where our music <em style="color:var(--accent)">comes from</em></h2>
+    <div class="sources-grid">
+      <a class="source-card" href="https://freemusicarchive.org" target="_blank">
+        <div class="source-icon">🎼</div>
+        <div class="source-name">Free Music Archive</div>
+        <div class="source-desc">A curated library of high-quality, legal audio downloads with a commitment to music curation and education.</div>
+        <div class="source-link">freemusicarchive.org ↗</div>
+      </a>
+      <a class="source-card" href="https://incompetech.com" target="_blank">
+        <div class="source-icon">🎹</div>
+        <div class="source-name">Incompetech</div>
+        <div class="source-desc">Kevin MacLeod's legendary collection of royalty-free music, beloved by YouTube creators and filmmakers worldwide.</div>
+        <div class="source-link">incompetech.com ↗</div>
+      </a>
+      <a class="source-card" href="https://creativecommons.org" target="_blank">
+        <div class="source-icon">⚖️</div>
+        <div class="source-name">Creative Commons</div>
+        <div class="source-desc">The licensing framework that makes all of this possible — empowering creators to share their work freely.</div>
+        <div class="source-link">creativecommons.org ↗</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- LICENSE -->
+  <div class="license-section">
+    <h3>Licensing & Usage</h3>
+    <p>All music on SoundWave is released under Creative Commons licenses. This means you can freely stream and download for personal use. For commercial use, please check the specific license for each track on the original source platform.</p>
+    <p style="margin-top:12px">Artists featured include <strong>Kai Engel</strong>, <strong>Kevin MacLeod</strong>, <strong>Josh Woodward</strong>, <strong>Ketsa</strong>, <strong>Broke For Free</strong>, <strong>Rolemusic</strong>, and <strong>Blue Dot Sessions</strong> — all incredible musicians who chose to share their work with the world.</p>
+    <div class="cc-badge">⚖️ Creative Commons Licensed</div>
+  </div>
+
+  <div style="text-align:center">
+    <a href="browse.html" style="background:var(--accent);color:white;padding:14px 36px;border-radius:50px;font-weight:600;text-decoration:none;font-size:0.95rem;box-shadow:0 6px 24px rgba(255,107,53,0.3)">Start Listening Free →</a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">Sound<span>Wave</span></div>
+      <p>Free music for everyone. All songs Creative Commons licensed.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <div class="footer-col-title">Pages</div>
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Sources</div>
+        <a href="https://freemusicarchive.org" target="_blank">Free Music Archive</a>
+        <a href="https://incompetech.com" target="_blank">Incompetech</a>
+        <a href="https://creativecommons.org" target="_blank">Creative Commons</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 SoundWave · Made with ♥ · Music is free for all</div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
